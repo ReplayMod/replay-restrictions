@@ -1,0 +1,68 @@
+group 'de.johni0702.replay'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    }
+}
+
+ext.projectName = 'ReplayRestrictions'
+ext.packaging = 'jar'
+ext.author = 'johni0702'
+ext.authorUrl = 'https://github.com/johni0702'
+ext.inceptionYear = '2015'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'license'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+
+    group = 'de.johni0702.replay'
+    version = rootProject.version
+    ext.url = rootProject.authorUrl
+
+    license {
+        ext.name = rootProject.projectName
+        ext.author = rootProject.author
+        ext.url = rootProject.authorUrl
+        ext.year = rootProject.inceptionYear
+        header new File(rootProject.getProjectDir(), 'HEADER.txt')
+        sourceSets = project.sourceSets
+        ignoreFailures false
+        strictCheck true
+        mapping {
+            java = 'SLASHSTAR_STYLE'
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = "sources"
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = "javadoc"
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives jar
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    build.dependsOn(sourcesJar)
+    build.dependsOn(javadocJar)
+
+    repositories {
+        mavenCentral()
+    }
+}

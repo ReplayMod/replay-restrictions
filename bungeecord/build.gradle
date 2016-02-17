@@ -1,0 +1,26 @@
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    maven {
+        name = 'bungeecord'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
+
+dependencies {
+    compile 'net.md-5:bungeecord-api:1.7-SNAPSHOT'
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'plugin.yml'
+        expand 'version':project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'plugin.yml'
+    }
+}

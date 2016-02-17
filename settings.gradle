@@ -1,0 +1,6 @@
+rootProject.name = 'replay-restrictions'
+
+['sponge', 'bukkit', 'bungeecord'].each {
+    include it
+    project(":$it").name = 'replayrestrictions-' + it
+}

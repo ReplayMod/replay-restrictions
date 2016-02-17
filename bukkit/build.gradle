@@ -1,0 +1,23 @@
+repositories {
+    maven {
+        name = 'bukkit'
+        url = 'http://repo.bukkit.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compile 'org.bukkit:bukkit:1.7.9-R0.2'
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'plugin.yml'
+        expand 'version':project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'plugin.yml'
+    }
+}

@@ -1,0 +1,4 @@
+name: ReplayRestrictions
+main: de.johni0702.replay.restrictions.BukkitPlugin
+version: ${version}
+author: johni0702
