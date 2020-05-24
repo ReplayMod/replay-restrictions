@@ -1,12 +1,11 @@
 repositories {
     maven {
-        name = 'bukkit'
-        url = 'http://repo.bukkit.org/content/groups/public/'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
 }
 
 dependencies {
-    compile 'org.bukkit:bukkit:1.7.9-R0.2'
+    implementation 'org.bukkit:bukkit:1.15.2-R0.1-SNAPSHOT'
 }
 
 processResources {

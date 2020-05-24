@@ -9,5 +9,5 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'org.spongepowered:spongeapi:2.1-SNAPSHOT'
+    implementation 'org.spongepowered:spongeapi:2.1-SNAPSHOT'
 }

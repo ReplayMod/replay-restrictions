@@ -32,6 +32,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRegisterChannelEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,7 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BukkitPlugin extends JavaPlugin implements Listener {
-    private static final String CHANNEL = "Replay|Restrict";
+    private static final String CHANNEL = "replaymod:restrict";
 
     private final Map<String, Object> global = new HashMap<String, Object>();
     private final Map<String, Map<String, Object>> worlds = new HashMap<String, Map<String, Object>>();
@@ -75,6 +76,12 @@ public class BukkitPlugin extends JavaPlugin implements Listener {
             }
         }
         return map;
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerRegister(PlayerRegisterChannelEvent event) {
+        if (!event.getChannel().equals(CHANNEL)) return;
+        sendRestrictions(event.getPlayer(), event.getPlayer().getWorld());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -115,6 +122,5 @@ public class BukkitPlugin extends JavaPlugin implements Listener {
             } catch (IOException ignored) {}
         }
         player.sendPluginMessage(this, CHANNEL, out.toByteArray());
-        new Throwable().fillInStackTrace().printStackTrace();
     }
 }
