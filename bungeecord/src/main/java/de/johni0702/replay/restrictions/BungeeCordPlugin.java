@@ -40,7 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BungeeCordPlugin extends Plugin implements Listener {
-    private static final String CHANNEL = "Replay|Restrict";
+    private static final String CHANNEL = "replaymod:restrict";
 
     private final Map<String, Object> global = new HashMap<String, Object>();
     private final Map<String, Map<String, Object>> servers = new HashMap<String, Map<String, Object>>();

@@ -54,7 +54,7 @@ import java.util.function.Consumer;
         version = "1.0-SNAPSHOT"
 )
 public class SpongePlugin {
-    private static final String CHANNEL = "Replay|Restrict";
+    private static final String CHANNEL = "replaymod:restrict";
 
     private final Map<String, Object> global = new HashMap<>();
     private final Map<String, Map<String, Object>> worlds = new HashMap<>();
